@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import layout from '../templates/components/full-calendar';
 import { InvokeActionMixin } from 'ember-invoke-action';
+import applicationConfig from 'web/config/environment';
+const { getOwner } = Ember;
 
 export default Ember.Component.extend(InvokeActionMixin, {
 
@@ -19,8 +21,7 @@ export default Ember.Component.extend(InvokeActionMixin, {
   schedulerLicenseKey: Ember.computed(function() {
 
     // load the consuming app's config
-    const applicationConfig = this.container.lookupFactory('config:environment'),
-          defaultSchedulerLicenseKey = 'CC-Attribution-NonCommercial-NoDerivatives';
+    const defaultSchedulerLicenseKey = 'CC-Attribution-NonCommercial-NoDerivatives';
 
     if (applicationConfig &&
         applicationConfig.emberFullCalendar &&
